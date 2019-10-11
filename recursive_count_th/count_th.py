@@ -4,18 +4,12 @@ Your function should return a count of how many occurences of ***"th"*** occur w
 Your function must utilize recursion. It cannot contain any loops.
 '''
 def count_th(word):
-    count = 0
-    substring = "th"
-    if word.find(substring) == -1: 
-        print(count) 
+    if len(word) == 0 or len(word) < 2: 
+        return 0 
+    elif word[0:2] == "th":
+        return count_th(word[1:]) + 1
     else:
-        left_index = word.find(substring)
-        left_index += 2
-        count += 1
-        
-        count_th(word[left_index:]) 
-    print(count)
-
+        return count_th(word[1:])
 
 text = "ththtthththh"
-count_th(text)
+print(count_th(text))
